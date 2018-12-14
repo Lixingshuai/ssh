@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<!-- 登录 -->
+	<package name="member" extends="default" namespace="/member">
+		<action name="login" class="loginAction" method="login">
+			<result name="success">/WEB-INF/view/main.html</result>
+		</action>
+	</package>
+
+</struts>

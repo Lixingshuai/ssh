@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	<!-- 基础类中注入abstractGenericDao -->
+	<bean id="abstractGenericService" class="com.ssh.framework.base.service.AbstractGenericService">
+		<property name="abstractGenericDao" ref="abstractGenericDao"></property>
+	</bean>
+
+	<!-- 基础dao中注入sessionFactory -->
+	<bean id="abstractGenericDao" class="com.ssh.framework.dao.impl.AbstractGenericDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+
+</beans>
