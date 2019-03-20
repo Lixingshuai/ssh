@@ -1,14 +1,8 @@
 package com.ssh.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
 import com.ssh.framework.base.pojo.AbstractEntity;
 
-@SuppressWarnings("rawtypes")
-@Entity
-@Table(name = "t_user")
-public class User implements AbstractEntity {
+public class User implements AbstractEntity<Integer> {
 	/**
 	 * 
 	 */

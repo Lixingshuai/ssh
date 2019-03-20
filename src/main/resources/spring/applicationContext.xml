@@ -10,7 +10,6 @@
         http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop.xsd">
-
 	<!-- 开启包扫描，并注册注解 -->
 	<!-- <context:component-scan base-package="com.ssh.business.*.action" />
 	<context:component-scan base-package="com.ssh.business.*.service" /> -->
@@ -40,7 +39,11 @@
 			</props>
 		</property>
 		<!-- 扫描并加载注解过的实体类 -->
-		<property name="packagesToScan" value="ssh.entity" />
+		<!-- <property name="packagesToScan" value="ssh.entity" /> -->
+		<!-- 扫描并加载映射文件 -->
+		<property name="mappingLocations" >
+			<value>classpath:/com/ssh/entity/*.hbm.xml</value>
+		</property>
 	</bean>
 
 	<!-- 配置事务管理器 -->
@@ -53,20 +56,24 @@
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<!-- 配置需要进行事务管理的方法，和事务传播行为 -->
-			<tx:method name="save*" propagation="REQUIRED" />
-			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="modify*" propagation="REQUIRED" />
 			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="sync*" propagation="REQUIRED" />
+			<tx:method name="batchAdd*" propagation="REQUIRED" />
+			<tx:method name="batchModify*" propagation="REQUIRED" />
+			<tx:method name="batchDelete*" propagation="REQUIRED" />
+			<tx:method name="batchSync*" propagation="REQUIRED" />
+			<tx:method name="*" propagation="REQUIRED" read-only="true"/>
 		</tx:attributes>
 	</tx:advice>
 
 	<!-- 配置切面 -->
 	<aop:config>
-		<aop:pointcut id="pointcut" expression="execution(* com.ssh.service.*+.*(..))" />
+		<aop:pointcut id="pointcut" expression="execution(* com.ssh.business.*.service.*+.*(..))" />
 		<!-- 适配切入点和事务增强 -->
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut" />
 	</aop:config>
-	
 	<!-- 引入spring文件 -->
 	<import resource="spring/*.bean.xml"/>
-	
 </beans>

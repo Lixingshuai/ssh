@@ -3,15 +3,16 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 
+	<!-- 基础dao中注入sessionFactory -->
+	<bean id="abstractGenericDao" class="com.ssh.framework.base.dao.impl.AbstractGenericDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
 	<!-- 基础类中注入abstractGenericDao -->
-	<bean id="abstractGenericService" class="com.ssh.framework.base.service.AbstractGenericService">
+	<bean id="abstractGenericService" class="com.ssh.framework.base.service.AbstractGenericServiceImpl">
 		<property name="abstractGenericDao" ref="abstractGenericDao"></property>
 	</bean>
 
-	<!-- 基础dao中注入sessionFactory -->
-	<bean id="abstractGenericDao" class="com.ssh.framework.dao.impl.AbstractGenericDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
 
 
 </beans>

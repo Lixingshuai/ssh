@@ -22,6 +22,8 @@ public interface AbstractGenericDao {
 	 */
 	public <T extends AbstractEntity<?>> T load(Class<T> clazz, Serializable id) throws EntityNotFoundException;
 
+	public <T extends AbstractEntity<?>> T get(Class<T> clazz, Serializable id);
+
 	/**
 	 * 
 	 * /** 功能说明：保存!
